@@ -38,4 +38,16 @@ public class CommentServiceImpl {
 		return count;
 	}
 
+	public int commentDeleteService(CommentVO commentvo) {
+		CommentMapper commentmapper = sqlSession.getMapper(CommentMapper.class);
+		
+		return commentmapper.commentdelete(commentvo);
+	}
+
+	public int commentupdateService(CommentVO commentvo) {
+CommentMapper commentmapper = sqlSession.getMapper(CommentMapper.class);
+		
+		return commentmapper.commentupdate(commentvo);
+	}
+
 }

@@ -12,4 +12,8 @@ public interface CommentMapper {
 
 	int countcommentList(int comment_product_number);
 
+	int commentdelete(CommentVO commentvo);
+
+	int commentupdate(CommentVO commentvo);
+
 }

@@ -27,4 +27,12 @@
 		from comment_list 
 		where comment_product_number = #{comment_product_number}
 	</select>
+	
+	<update id="commentdelete" parameterType="CommentVO">
+		update comment_list set comment_is_deleted = '1' where comment_number = #{comment_number} and comment_product_number=#{comment_product_number}
+	</update>
+	
+	<update id="commentupdate" parameterType="CommentVO">
+		update comment_list set comment_content = #{comment_content},comment_date = sysdate where comment_number = #{comment_number}
+	</update>
 </mapper>

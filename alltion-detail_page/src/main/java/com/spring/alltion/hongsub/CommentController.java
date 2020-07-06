@@ -26,4 +26,18 @@ public class CommentController {
 		
 		return res;
 	}
+	
+	@RequestMapping(value="commentdelete.hs",produces="application/json;charset=UTF-8")
+	public int commentdelete(CommentVO commentvo)throws Exception{
+		int res = commentService.commentDeleteService(commentvo);
+		
+		return res;
+	}
+	
+	@RequestMapping(value="commentupdate.hs",produces="application/json;charset=UTF-8")
+	public int commentupdate(CommentVO commentvo)throws Exception{
+		int res = commentService.commentupdateService(commentvo);
+		
+		return res;
+	}
 }

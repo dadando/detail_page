@@ -15,7 +15,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./resources/css/style.css">
-    <link rel="stylesheet" href="./resources/css/product_detail.css"> <!-- 상세페이지 스타일시트 참조 (by.HONG)-->
+    <link rel="stylesheet" href="./resources/css/product_detail.css?after"> <!-- 상세페이지 스타일시트 참조 (by.HONG)-->
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>All-tion</title>
@@ -34,7 +34,7 @@
     <!-- 광고 배너 및 헤더 -->
     <div class="ad__banner">
         <a href="#" class="ad__banner--link">
-            <img src=".resources/img/header/adEx.png" class="ad__banner--img">
+            <img src="./resources/img/header/adEx.png" class="ad__banner--img">
             <button class="ad__banner--closeBtn"></button>
         </a>
     </div>
@@ -64,7 +64,7 @@
                 </h1>
                 <div class="category">
                     <a class="category--drop">
-                        <img src=".resources/img/header/category_tab.png">
+                        <img src="./resources/img/header/category_tab.png">
                     </a>
                 </div>
                 <div class="search">
@@ -309,7 +309,7 @@
                 <a type="button" onclick="move(2)">상품 정보</a>
             </li>
             <li>
-                <a type="button" onclick="move(3)">문의 사항</a>
+                <a type="button" onclick="move(3)">교환 / 반품</a>
             </li>
             <li>
                 <a type="button" onclick="move(4)">댓 글 (<%=count_comment_list %>)</a>
@@ -330,26 +330,6 @@
             <div class="bidder">
                 
             </div>
-             <!--
-            <div class="bidder">
-                <div class="bid_list_no">3</div>
-                <div class="bid_price">20,000 원</div>
-                <div class="bidder_id">가지마1 님</div>
-                <div class="bid_time">몇 시간전</div>
-            </div>
-            <div class="bidder">
-                <div class="bid_list_no">2</div>
-                <div class="bid_price">19,000 원</div>
-                <div class="bidder_id">가지마2 님</div>
-                <div class="bid_time">몇 시간전</div>
-            </div>
-            <div class="bidder">
-                <div class="bid_list_no">1</div>
-                <div class="bid_price">15,000 원</div>
-                <div class="bidder_id">가지마3 님</div>
-                <div class="bid_time">몇 시간전</div>
-            </div>
-             -->
         </div>
 
 
@@ -361,7 +341,7 @@
                 <a style="color:white;">상품 정보</a>
             </li>
             <li>
-                <a type="button" onclick="move(3)">문의 사항</a>
+                <a type="button" onclick="move(3)">교환 / 반품</a>
             </li>
             <li>
                 <a type="button" onclick="move(4)">댓 글 (<%=count_comment_list %>)</a>
@@ -397,7 +377,7 @@
                     <a type="button" onclick="move(2)">상품 정보</a>
                 </li>
                 <li style="border-radius: 4px 4px 0 0;background-color:#BBBBBB;font-weight: bold;">
-                    <a style="color:white;">문의 사항</a>
+                    <a style="color:white;">교환 / 반품</a>
                 </li>
                 <li>
                     <a type="button" onclick="move(4)">댓 글 (<%=count_comment_list %>)</a>
@@ -406,16 +386,38 @@
         </div>
 
         <!-- ↓↓경매물품의 상세정보↓↓ -->
-        <div class="information_detail">
-            
-            <span>제품 설명</span>
+        <div class="exchange_rule">
+            <ul>
+            	<li>
+            		<label>배송지역</label>
+            		<font>전국※제주권 및 도서산간 지역은 배송비가 추가될 수 있습니다.</font>
+            	</li>
+            	<li>
+            		<label>배송방법</label>
+            		<font>택배, 선불/착불 [선/착불 4,000원]</font>
+            	</li>
+            	<li>
+            		<label>반품기간</label>
+            		<font>수령일로 부터 7일 이내에 반품을 신청 하실 수 있습니다.</font>
+            	</li>
+            	<li>
+            		<label>반품비용</label>
+            		<font>원인제공자 부담을 원칙으로 합니다.</font>
+            	</li>
+            </ul>
+            <br>
+            <div>● 반품시 주의사항</div>
             <p>
-                가나다라마바사아자차카타파하<br>
-                가나다라마바사아자차카타파하<br>
-                가나다라마바사아자차카타파하<br>
-                가나다라마바사아자차카타파하<br>
-                가나다라마바사아자차카타파하<br>
-                가나다라마바사아자차카타파하<br>
+            	1) 소비자의 책임 있는 사유로 상품 등이 멸실 / 훼손된 경우(단지 확인을 위한 포장 훼손 제외) <br>
+            	2) 소비자의 사용 / 소비에 의해 상품 등의 가치가 현저히 감소한 경우 <br>
+            	3) 시간의 경과에 의해 재판매가 곤란할 정도로 상품 등의 가치가 현저히 감소한 경우 <br>
+            	4) 복제가 가능한 상품 등의 포장을 훼손한 경우 <br>
+            	5) 판매 / 생산방식의 특성상, 반품 시 판매자 에게 회복할 수 없는 손해가 발생하는 경우(주문 접수 후 개별생산, 맞춤 제작 등)
+            </p>
+            <div>● 파손물품 반품시 주의사항</div>
+            <p>
+            	물품 수령시 택배기사와 함께 물품의 파손여부를 확인하신 후, <br>
+            	반품 신청시 파손 이미지를 등록해 주시면 안전하고 신속하게 반품 / 교환 처리를 해드리고 있습니다.
             </p>
         </div>
 
@@ -427,7 +429,7 @@
                 <a type="button" onclick="move(2)">상품 정보</a>
             </li>
             <li>
-                <a type="button" onclick="move(3)">문의 사항</a>
+                <a type="button" onclick="move(3)">교환 / 반품</a>
             </li>
             <li style="border-radius: 4px 4px 0 0;background-color:#BBBBBB;font-weight: bold;">
                 <a style="color:white;">댓 글 (<%=count_comment_list %>)</a>
@@ -696,7 +698,7 @@
             } else if (n == 2) {
                 var offset = $(".product_information").offset();
             } else if (n == 3) {
-                var offset = $(".information_detail").offset();
+                var offset = $(".exchange_rule").offset();
             } else if (n == 4) {
                 var offset = $(".comment_div").offset();
             }
@@ -758,7 +760,8 @@
 				dataType : 'json',
 				contentType : 'application/x-www-form-urlencoded; charset=utf-8',
 				success : function(data){
-					var a='';
+					var a = '';
+					var i = 0;
 					$.each(data,function(key,value){
 						a += '<div class="bidder1">';
 						a += '<div class="bid_list_no">'+value.bid_no+'</div>';
@@ -820,7 +823,7 @@
 		
 		//경매등록자 아이디
 		let writerId = '<%=writerId%>'; 
-		
+		let List_size = 0;
 		function commentList(){
 			
 			$.ajax({
@@ -830,32 +833,43 @@
 				dataType : 'json',
 				contentType : 'application/x-www-form-urlencoded; charset=utf-8',
 				success : function(data){
-					var a='';
+					var a = '';
+					var i =0;
 					$.each(data,function(key,value){
 						
 						a += '<div class="comment_list1">';
-						a += '<div class="comment_number">NO. '+value.comment_list_no+'</div>';
-						a += '<div class="comment_id"> 작성자: '+value.comment_id+'</div>';
-						if(value.comment_secret=="1"){
+						a += '<span class="comment_id"> 작성자 |&nbsp;'+value.comment_id.substring(0,3)+'****</span>';
+						a += '<span class="comment_date">'+value.comment_date+'</span>';
+						
+						if(value.comment_is_deleted=="1"){
+							a += '<div class="comment_content">삭제된 글 입니다.</div>';
+						}else if(value.comment_secret=="1"){
 							if(sessionid==value.comment_id||sessionid==writerId){
 								a += '<div class="comment_content">'+value.comment_content+'</div>';
+								
 							}else{
 								a += '<div class="comment_content">비밀글 입니다.</div>';
 							}
 								
-						}else if(value.comment_is_deleted=="1"){
-							if(sessionid==value.comment_id){
-								a += '<div class="comment_content">'+value.comment_content+'</div>';
-							}else{
-								a += '<div class="comment_content">삭제된 글 입니다.</div>';
-							}
 						}else{
 							a += '<div class="comment_content">'+value.comment_content+'</div>';
 						}
-						a += '<div class="comment_date">'+value.comment_date+'</div>';
+						
+						if(sessionid==value.comment_id&&value.comment_is_deleted=="0"){
+							a += '<a onclick="commentUpdateForm('+i+')">수정</a>';
+							a += '<a onclick="commentDelete('+value.comment_number+')">삭제</a>';
+						}else if(value.comment_is_deleted=="0"){
+							a += '<a href="#" style="color: red;">신고하기</a>';
+						}
 						a += '</div>';
+						a += '<div class="comment_update" style="display:none;">';
+						a += '<textarea class="comment_content_update" placeholder="  *수정할 내용을 입력해 주세요."></textarea><br>';					            
+					    a += '<a onclick="commentUpdate('+value.comment_number+')">확인</a><a onclick="commentList()">취소</a>';
+						a += '</div>';
+					    i++;
 					});
 					$(".comment_list").html(a);
+					List_size = i;
 				},
 				error:function(){
 					alert("ajax통신 실패(comment_list)!!!");		
@@ -874,6 +888,10 @@
 			}else{
 				comment_secret_value = "0";
 			}
+			if(comment_content_input.value==""){
+				alert('내용을 입력해 주세요.');
+				return false;
+			}
 			$.ajax({
 				url: '/alltion/commentinsert.hs',
 				type : 'POST',
@@ -888,6 +906,64 @@
 				},
 				error:function(){
 					alert("ajax통신 실패(commentinsert)");
+				}
+			});
+		}
+		let number_for_update = 0;
+		function commentUpdateForm(n){
+			number_for_update = n;
+			
+			for(var i=0;i<List_size;i++){
+				let comment_update = document.getElementsByClassName('comment_update')[i];
+				let comment_list1 = document.getElementsByClassName('comment_list1')[i];
+				
+				if(i==n){
+					comment_update.style.display = "block";
+					comment_list1.style.display = "none";
+					continue;
+				}
+				
+				comment_update.style.display = "none";
+				comment_list1.style.display = "block";
+			}
+		}
+		
+		function commentUpdate(n){
+			let comment_content_update = document.getElementsByClassName('comment_content_update')[number_for_update];
+			$.ajax({
+				url: '/alltion/commentupdate.hs',
+				type : 'POST',
+				data : {'comment_content':comment_content_update.value,'comment_number':n},
+				dataType : 'json',
+				contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+				success:function(data){
+					if(data==1){
+						commentList(); //페이지 로딩시 응찰 목록 갱신
+						window.location.reload(true);
+					}
+				},
+				error:function(){
+					alert("ajax통신 실패(commentUpdate)");
+				}
+			});
+		}
+		
+		function commentDelete(n){
+			let comment_del = n;
+			$.ajax({
+				url: '/alltion/commentdelete.hs',
+				type : 'POST',
+				data : {'comment_product_number':bno,'comment_id':sessionid,'comment_number':n},
+				dataType : 'json',
+				contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+				success:function(data){
+					if(data==1){
+						commentList(); //페이지 로딩시 응찰 목록 갱신
+						window.location.reload(true);
+					}
+				},
+				error:function(){
+					alert("ajax통신 실패(commentDelete)");
 				}
 			});
 		}
