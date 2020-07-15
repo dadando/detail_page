@@ -258,6 +258,7 @@
 .bid_list {
     margin: 20px 0;
     width: 1200px;
+    height: 500px;
 }
 
 .bid_list_column div {
@@ -404,7 +405,9 @@
 	margin-bottom:20px;
 	border-bottom: thin solid darkgray;
 }
-
+.reply{
+	margin-left: 30px;
+}
 .comment_list1 span{
 	margin-right: 10px;
 }
@@ -441,6 +444,9 @@
 	height: 143px;
 	margin-bottom: 20px;
 }
+
+/*댓글의 답글용 css*/
+
 
 /*여기까지 product_information*/
 /*네비게이션바 요약내용 아래*/

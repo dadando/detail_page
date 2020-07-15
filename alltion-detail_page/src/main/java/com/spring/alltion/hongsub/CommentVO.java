@@ -21,7 +21,7 @@ public class CommentVO {
 	private int comment_group_number;
 	private int comment_product_number;
 	private String comment_id;
-	private String comment_reply_id;
+	private String comment_original_id;
 	private String comment_content;
 	private String comment_lev;
 	private String comment_secret;
@@ -82,17 +82,18 @@ public class CommentVO {
 	public void setComment_list_no(int comment_list_no) {
 		this.comment_list_no = comment_list_no;
 	}
-	public String getComment_reply_id() {
-		return comment_reply_id;
-	}
-	public void setComment_reply_id(String comment_reply_id) {
-		this.comment_reply_id = comment_reply_id;
-	}
+	
 	public String getComment_lev() {
 		return comment_lev;
 	}
 	public void setComment_lev(String comment_lev) {
 		this.comment_lev = comment_lev;
+	}
+	public String getComment_original_id() {
+		return comment_original_id;
+	}
+	public void setComment_original_id(String comment_original_id) {
+		this.comment_original_id = comment_original_id;
 	}
 	
 }

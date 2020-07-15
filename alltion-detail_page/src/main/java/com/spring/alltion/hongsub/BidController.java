@@ -3,6 +3,7 @@ package com.spring.alltion.hongsub;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,8 +15,8 @@ public class BidController {
 	private BidServiceImpl bidService;
 	
 	@RequestMapping(value="/bid_list.hs",produces="application/json;charset=UTF-8")
-	private List<BidVO> bidList(@RequestParam int bno)throws Exception{
-		List<BidVO> bid_list = bidService.bidListService(bno);
+	private List<BidVO> bidList(@RequestParam int bno,@RequestParam int page,Model model)throws Exception{
+		List<BidVO> bid_list = bidService.bidListService(bno,page,model);
 		
 		return bid_list;
 	}

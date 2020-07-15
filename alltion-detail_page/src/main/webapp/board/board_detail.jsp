@@ -5,8 +5,18 @@
 	String id = (String)session.getAttribute("userId");
 	BoardVO bvo = (BoardVO)request.getAttribute("bvo");
 	String writerId = bvo.getProduct_id();
-	MemberVO mvo = (MemberVO)request.getAttribute("mvo");
-	String count_comment_list = request.getAttribute("count_comment_list").toString();
+	
+	int bid_listcount = (int)request.getAttribute("bid_listcount");
+	int bid_nowpage = (int)request.getAttribute("bid_page");
+	int bid_maxpage=(int)request.getAttribute("bid_maxpage");
+	int bid_startpage=(int)request.getAttribute("bid_startpage");
+	int bid_endpage=(int)request.getAttribute("bid_endpage");
+	
+	int comment_listcount = (int)request.getAttribute("comment_listcount")-1;
+	int comment_nowpage = (int)request.getAttribute("comment_page");
+	int comment_maxpage=(int)request.getAttribute("comment_maxpage");
+	int comment_startpage=(int)request.getAttribute("comment_startpage");
+	int comment_endpage=(int)request.getAttribute("comment_endpage");
 	
 %>
 <!DOCTYPE html>
@@ -185,7 +195,7 @@
                                         <ul>
                                             <li>
                                                 <label>아이디</label>
-                                                <font><%=mvo.getMember_id() %></font>
+                                                <font><%=bvo.getProduct_id() %></font>
                                             </li>
                                             <li>
                                                 <label>이메일</label>
@@ -303,7 +313,7 @@
         <!-- ↓↓상세정보페이지 네비게이션바↓↓ -->
         <ul class="detail_page_nav">
             <li style="border-radius: 4px 4px 0 0;background-color:#BBBBBB;font-weight: bold;">
-                <a style="color:white;">응찰자 리스트</a>
+                <a style="color:white;">응찰 현황 (<%=bid_listcount %>)</a>
             </li>
             <li>
                 <a type="button" onclick="move(2)">상품 정보</a>
@@ -312,7 +322,7 @@
                 <a type="button" onclick="move(3)">교환 / 반품</a>
             </li>
             <li>
-                <a type="button" onclick="move(4)">댓 글 (<%=count_comment_list %>)</a>
+                <a type="button" onclick="move(4)">댓 글 (<%=comment_listcount %>)</a>
             </li>
         </ul>
 
@@ -330,12 +340,18 @@
             <div class="bidder">
                 
             </div>
+           	
+			
         </div>
-
-
+		<!-- 응찰리스트 페이징 -->
+		<div align="center">
+			<%for(int i=bid_startpage;i<=bid_endpage;i++){%>
+				<a type="button" onclick="bidList(<%=i%>)">[<%=i %>]</a>
+			<%}%>
+		</div>
         <ul class="detail_page_nav">
             <li>
-                <a type="button" onclick="move(1)">응찰자 리스트</a>
+                <a type="button" onclick="move(1)">응찰 현황 (<%=bid_listcount %>)</a>
             </li>
             <li style="border-radius: 4px 4px 0 0;background-color:#BBBBBB;font-weight: bold;">
                 <a style="color:white;">상품 정보</a>
@@ -344,7 +360,7 @@
                 <a type="button" onclick="move(3)">교환 / 반품</a>
             </li>
             <li>
-                <a type="button" onclick="move(4)">댓 글 (<%=count_comment_list %>)</a>
+                <a type="button" onclick="move(4)">댓 글 (<%=comment_listcount %>)</a>
             </li>
         </ul>
 
@@ -371,7 +387,7 @@
 
             <ul class="detail_page_nav">
                 <li>
-                    <a type="button" onclick="move(1)">응찰자 리스트</a>
+                    <a type="button" onclick="move(1)">응찰 현황 (<%=bid_listcount %>)</a>
                 </li>
                 <li>
                     <a type="button" onclick="move(2)">상품 정보</a>
@@ -380,7 +396,7 @@
                     <a style="color:white;">교환 / 반품</a>
                 </li>
                 <li>
-                    <a type="button" onclick="move(4)">댓 글 (<%=count_comment_list %>)</a>
+                    <a type="button" onclick="move(4)">댓 글 (<%=comment_listcount %>)</a>
                 </li>
             </ul>
         </div>
@@ -423,7 +439,7 @@
 
         <ul class="detail_page_nav">
             <li>
-                <a type="button" onclick="move(1)">응찰자 리스트</a>
+                <a type="button" onclick="move(1)">응찰 현황 (<%=bid_listcount %>)</a>
             </li>
             <li>
                 <a type="button" onclick="move(2)">상품 정보</a>
@@ -432,7 +448,7 @@
                 <a type="button" onclick="move(3)">교환 / 반품</a>
             </li>
             <li style="border-radius: 4px 4px 0 0;background-color:#BBBBBB;font-weight: bold;">
-                <a style="color:white;">댓 글 (<%=count_comment_list %>)</a>
+                <a style="color:white;">댓 글 (<%=comment_listcount %>)</a>
             </li>
         </ul>
 
@@ -447,6 +463,11 @@
             
             </div>
         </div>
+        <div align="center">
+			<%for(int j=comment_startpage;j<=comment_endpage;j++){%>
+				<a type="button" onclick="commentList(<%=j%>)">[<%=j %>]</a>
+			<%}%>
+		</div>
 
     </div>
     </div>
@@ -639,6 +660,7 @@
         $(document).on('click','.mag_close',function(event){
             $('.magSlides').off();
         });
+        
         // ↓↓이미지 돋보기기능.↓↓ by.HONG
         function mag(i) {
             var target = $('.target' + i);
@@ -740,8 +762,8 @@
         
         // ↓↓응찰관련
         $(document).ready(function(){
-			bidList(); //페이지 로딩시 응찰 목록 출력 
-			commentList(); //페이지 로딩시 댓글 목록 출력
+			bidList(1); //페이지 로딩시 응찰 목록 출력 
+			commentList(1); //페이지 로딩시 댓글 목록 출력
 		});
         
         //경매 번호
@@ -752,11 +774,11 @@
         let sessionid = '<%=id%>';
         
         // ↓↓응찰하기 버튼 클릭시
-      	function bidList(){
+      	function bidList(bid_nowpage){
 			$.ajax({
 				url : '/alltion/bid_list.hs',
 				type : 'post',
-				data : {'bno':bno},
+				data : {'bno':bno,'page':bid_nowpage},
 				dataType : 'json',
 				contentType : 'application/x-www-form-urlencoded; charset=utf-8',
 				success : function(data){
@@ -776,6 +798,7 @@
 							document.getElementById("bid_btn2").disabled = true;
 						}
 					});
+					
 					$(".bidder").html(a);
 				},
 				error:function(){
@@ -791,7 +814,7 @@
 				data : {'bid_product_number':bno,'bid_id':sessionid},
 				success : function(data){
 					if(data==1){
-						bidList(); //페이지 로딩시 응찰 목록 갱신
+						bidList(1); //페이지 로딩시 응찰 목록 갱신
 						window.location.reload(true);
 					}
 					
@@ -811,7 +834,7 @@
 				contentType : 'application/x-www-form-urlencoded; charset=utf-8',
 				success:function(data){
 					if(data==1){
-						bidList(); //페이지 로딩시 응찰 목록 갱신
+						bidList(1); //페이지 로딩시 응찰 목록 갱신
 						window.location.reload(true);
 					}
 				},
@@ -824,49 +847,77 @@
 		//경매등록자 아이디
 		let writerId = '<%=writerId%>'; 
 		let List_size = 0;
-		function commentList(){
+		function commentList(comment_nowpage){
 			
 			$.ajax({
 				url : '/alltion/commentlist.hs',
 				type : 'post',
-				data : {'comment_product_number':bno},
+				data : {'comment_product_number':bno,'page':comment_nowpage},
 				dataType : 'json',
 				contentType : 'application/x-www-form-urlencoded; charset=utf-8',
 				success : function(data){
 					var a = '';
-					var i =0;
+					var i = 0;
 					$.each(data,function(key,value){
-						
-						a += '<div class="comment_list1">';
+						a += '<div class="comment_list1';
+						if(value.comment_lev==="1"){
+							a += ' reply';
+						}
+						a += '">';
+						if(value.comment_lev==="1"){
+							a += '<span class="replyre">┕ </span>';
+						}
 						a += '<span class="comment_id"> 작성자 |&nbsp;'+value.comment_id.substring(0,3)+'****</span>';
 						a += '<span class="comment_date">'+value.comment_date+'</span>';
-						
-						if(value.comment_is_deleted=="1"){
+					
+						if(value.comment_is_deleted==="1"){
 							a += '<div class="comment_content">삭제된 글 입니다.</div>';
-						}else if(value.comment_secret=="1"){
-							if(sessionid==value.comment_id||sessionid==writerId){
+						}else if(value.comment_secret==="1"){
+							if(sessionid===value.comment_id||sessionid===writerId){
 								a += '<div class="comment_content">'+value.comment_content+'</div>';
 								
 							}else{
 								a += '<div class="comment_content">비밀글 입니다.</div>';
 							}
-								
 						}else{
 							a += '<div class="comment_content">'+value.comment_content+'</div>';
 						}
 						
-						if(sessionid==value.comment_id&&value.comment_is_deleted=="0"){
-							a += '<a onclick="commentUpdateForm('+i+')">수정</a>';
-							a += '<a onclick="commentDelete('+value.comment_number+')">삭제</a>';
-						}else if(value.comment_is_deleted=="0"){
-							a += '<a href="#" style="color: red;">신고하기</a>';
+						// ↓↓ 삭제글이 아닐때만 아래 버튼들이 생긴다.
+						if(value.comment_is_deleted==="0"){
+							if(sessionid===value.comment_id){
+								a += '<div class="commentbtn">';
+								a += '<a onclick="commentUpdateForm('+i+')">수정</a>';
+								a += '<a onclick="commentDelete('+value.comment_number+')">삭제</a>';
+								a += '</div>';
+							}else if(sessionid===writerId){
+								a += '<div class="commentbtn">';
+								a += '<a onclick = "commentReplyForm('+i+')">답글</a>';
+								a += '<a href="#" style="color: red;">신고하기</a>';
+								a += '</div>';
+							}else if(value.comment_secret==="0"){
+								a += '<div class="commentbtn">';
+								a += '<a onclick = "commentReplyForm('+i+')">답글</a>';
+								a += '<a href="#" style="color: red;">신고하기</a>';
+								a += '</div>';
+							}
 						}
+					
+						//댓글의 답변
+						a += '<div class = "comment_reply" style = "display:none;">';
+						a += '<textarea class="comment_content_reply" placeholder="  *댓글을 달아주세요."></textarea><br>';
+						a += '<a onclick="commentReply('+value.comment_number+')">확인</a>&nbsp;<a onclick="commentReplyForm(-1)">취소</a>';
 						a += '</div>';
+						
+						a += '</div>';
+					
+						//댓글의 수정
 						a += '<div class="comment_update" style="display:none;">';
 						a += '<textarea class="comment_content_update" placeholder="  *수정할 내용을 입력해 주세요."></textarea><br>';					            
-					    a += '<a onclick="commentUpdate('+value.comment_number+')">확인</a><a onclick="commentList()">취소</a>';
+					    a += '<a onclick="commentUpdate('+value.comment_number+')">확인</a><a onclick="commentList(1)">취소</a>';
 						a += '</div>';
 					    i++;
+					    
 					});
 					$(".comment_list").html(a);
 					List_size = i;
@@ -900,7 +951,7 @@
 				contentType : 'application/x-www-form-urlencoded; charset=utf-8',
 				success:function(data){
 					if(data==1){
-						commentList(); //페이지 로딩시 응찰 목록 갱신
+						commentList(1); //페이지 로딩시 응찰 목록 갱신
 						window.location.reload(true);
 					}
 				},
@@ -909,7 +960,10 @@
 				}
 			});
 		}
+		
+		// ↓↓댓글 수정
 		let number_for_update = 0;
+		
 		function commentUpdateForm(n){
 			number_for_update = n;
 			
@@ -938,7 +992,7 @@
 				contentType : 'application/x-www-form-urlencoded; charset=utf-8',
 				success:function(data){
 					if(data==1){
-						commentList(); //페이지 로딩시 응찰 목록 갱신
+						commentList(1); //페이지 로딩시 응찰 목록 갱신
 						window.location.reload(true);
 					}
 				},
@@ -948,8 +1002,9 @@
 			});
 		}
 		
+		// ↓↓댓글 삭제
 		function commentDelete(n){
-			let comment_del = n;
+			
 			$.ajax({
 				url: '/alltion/commentdelete.hs',
 				type : 'POST',
@@ -958,7 +1013,7 @@
 				contentType : 'application/x-www-form-urlencoded; charset=utf-8',
 				success:function(data){
 					if(data==1){
-						commentList(); //페이지 로딩시 응찰 목록 갱신
+						commentList(1); //페이지 로딩시 응찰 목록 갱신
 						window.location.reload(true);
 					}
 				},
@@ -967,6 +1022,47 @@
 				}
 			});
 		}
+		
+		// ↓↓ 댓글 답변달기
+		let number_for_reply = 0;
+		
+		function commentReplyForm(n){
+			number_for_reply = n;
+			
+			for(var i=0;i<List_size;i++){
+				let comment_reply = document.getElementsByClassName('comment_reply')[i];
+				if(i==n){
+					comment_reply.style.display = "block";
+					
+				}else{
+					comment_reply.style.display = "none";
+				}
+			}
+		}
+		
+		function commentReply(n){
+			let comment_content_reply = document.getElementsByClassName('comment_content_reply')[number_for_reply];
+			
+			$.ajax({
+				
+				url: '/alltion/commentreply.hs',
+				type : 'POST',
+				data : {'comment_content':comment_content_reply.value,'comment_original_number':n,'comment_id':sessionid,'comment_product_number':bno},
+				dataType : 'json',
+				contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+				success:function(data){
+					if(data==1){
+						commentList(1); //페이지 로딩시 응찰 목록 갱신
+						window.location.reload(true);
+					}
+				},
+				error:function(){
+					alert("ajax통신 실패(commentReply)");
+				}
+			});
+		}
+		
+		
     </script>
 </body>
 </html>
