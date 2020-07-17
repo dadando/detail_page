@@ -97,6 +97,7 @@ public class BidServiceImpl {
 		int rest = bidmapper.bidInsert(bidvo);
 		if(price == product_purchase_price) {
 			tradingServiceImpl.endOfAuction(bid_product_number);
+			rest=2;
 		}
 		
 		return rest;

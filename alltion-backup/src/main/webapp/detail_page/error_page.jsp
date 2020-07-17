@@ -22,7 +22,7 @@
             <p>
                 관련 문의사항은 <a href="#">고객센터</a>에 알려주시면 친절히 안내해드리겠습니다.&nbsp; 감사합니다.
             </p>
-            <a type="button" href="javascript:history.back();">이전 페이지로</a><a type="button" href="#">홈으로 돌아가기</a>
+            <a type="button" href="javascript:history.back();">이전 페이지로</a><a type="button" href="/alltion/">홈으로 돌아가기</a>
         </div>
     </div>
 </body>

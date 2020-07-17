@@ -1,0 +1,36 @@
+/*참여 중 경매 By.HONG*/
+.main_body {
+    width: 1200px;
+    position: relative;
+    height: 100%;
+    min-height: 400px;
+    margin: 50px auto;
+}
+.bidding_title{
+	margin-bottom: 50px;
+}
+.bidding_notify{
+	background-color: #EEEEEE;
+	font-size:15px;
+	font-style:italic;
+	padding: auto;
+}
+
+.bidding_notify li{
+	height: 20px;
+	
+}
+.main_body p{
+	font-size: 15px;
+}
+table{
+	width: 1200px;
+	text-align: center;
+	border: thin solid darkgray;
+	border-collapse: collapse;
+}
+td{
+	border-bottom:thin solid darkgray;
+	padding-top: 10px;
+	veritical-align: middle;
+}

@@ -1,31 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import = "com.spring.alltion.login.MemberVO" %>
+<%@ page import = "com.spring.alltion.productRegistration.*" %>
+<%@ page import = "java.util.*" %>
 <%
-	String id = (String)session.getAttribute("userId");
 	
 %>
 <!DOCTYPE html>
 <html>
 <head>
- <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="./resources/css/style.css">
-    <link rel="stylesheet" href="./resources/css/mypage.css">
+    <link rel="stylesheet" href="./resources/css/bidding.css">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title>All-tion - 마이 페이지</title>
-    <style>
-    </style>
+    <title>All-tion</title>
+    
 </head>
 <body>
     <!-- 모든 페이지 공통 영역 by 하나  -->
-   
+  
     <div class="header">
         <div class="upper_header">
             <div class="upper_header--nav">
-                <p>
+                <span>
                     <a href="" id="clock"></a>
-                </p>
+                </span>
                 <ul>
                     <li>
                         <a href="./mypage.kj">${userId}</a>
@@ -35,9 +34,6 @@
                     </li>
                     <li>
                     	<a href="./registration.yb">판매하기</a>
-                    </li>
-                    <li>
-                        <a href="#">고객 센터</a>
                     </li>
                 </ul>
             </div>
@@ -78,7 +74,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="./wishList.yb">
+                        <a href="#">
                             <span class="material-icons">turned_in_not</span>
                             <span>찜 목록</span>
                         </a>
@@ -93,61 +89,37 @@
             </div>
         </div>
     </div>
-    <!--  마이 페이지 선택  -->
-    <div class="myPage__main">
-        <h3 class="myPage__title">마이 페이지</h3>
-        <ul class="myPage__category">
-            <li>
-                <a href="./memberinfo.kj">
-                    <span class="material-icons">recent_actors</span><br>
-                    <span class="myPage__menu">회원 정보</span>
-                    
-                </a>
-            </li>
-            <li>
-                <a href="./pay.ms">
-                    <span class="material-icons">credit_card</span><br>
-                    <span class="myPage__menu">e-머니</span>
-                </a>
-            </li>
-            <li>
-                <a href="creditScore.hn">
-                    <span class="material-icons">money</span><br>
-                    <span class="myPage__menu">신용 등급</span>
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <span class="material-icons">forum</span><br>
-                    <span class="myPage__menu">활동 내역</span>
-                </a>
-            </li>
-            <li>
-                <a href="./buyer.kj">
-                    <span class="material-icons">receipt</span><br>
-                    <span class="myPage__menu">구매 내역</span>
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <span class="material-icons">list</span><br>
-                    <span class="myPage__menu">판매 내역</span>
-                </a>
-            </li>
-            <li>
-                <a href="./bidding.hs">
-                    <span class="material-icons">poll</span><br>
-                    <span class="myPage__menu">참여 중 경매</span>
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <span class="material-icons">done_all</span><br>
-                    <span class="myPage__menu">판매 중 경매</span>
-                </a>
-            </li>
-        </ul>
+    <!-- 메인 내용 -->
+    <div class="main_body">
+    	<div class="bidding_title">
+    		<h1>참여 중 경매</h1>
+    	</div>
+    	<div class="bidding_notify">
+    		<ul>
+    			<li>&#9679;회원님께서 현재 응찰 참여중인 물품의 리스트입니다.<li>
+    			<li>&#9679;물품정보가 변경되었을 수 있으니 입찰하시기전에 반드시 경매정보 및 물품정보를 재확인하시기 바랍니다.</li>
+    			<li>&#9679;해당 물품이 낙찰이 되거나 경매시간이 종료될 경우 해당 물품의 정보는 확인하실 수 없습니다.</li>
+    		</ul>
+    	</div>
+    	<div class="table_title">
+    		<p>현재 참여중인 경매에 대해서 모두 ?개가 검색되었습니다.</p>
+    	</div>
+    	<table class="bidding_list">
+			<thead>
+				<tr>
+					<th class="product_info">상품 정보</th>
+					<th class="current_price">현재가</th>
+					<th class="product_delivery">배송</th>
+					<th class="bid_deadline">마감 시간</th>
+				</tr>
+			</thead>
+    		<tbody id="bidding_content">
+    			
+    		</tbody>
+    	</table>
+    	
     </div>
+   
     <!-- 푸터 영역 -->
     <div class="footer">
         <div class="upper_footer">
@@ -189,7 +161,7 @@
                 </li>
             </ul>
         </div>
-        <div class="lower_footer">
+		<div class="lower_footer">
             <ul class="lower_footer__content">
                 <li>
                     <p>상호명 : (주)올션 / 짜면된다 / 주소: 서울특별시 종로구 삼일대로 서울특별시 서초구 서초4동 강남대로</p>
@@ -201,7 +173,7 @@
                     <p>Copyright © eBay Korea LLC All rights reserved.</p>
                 </li>
             </ul>
-        </div>          
+        </div>   
     </div>
     
     <!--  스크립트 영역  -->
