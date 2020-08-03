@@ -6,6 +6,7 @@
 <head>
     <meta charset="utf-8">
     <title>All-tion</title>
+    <link rel="shortcut icon" type="image⁄x-icon" href="./resources/img/header/logo.jpg">
     <link rel="stylesheet" href="./resources/css/error_page.css">
     
 </head>    

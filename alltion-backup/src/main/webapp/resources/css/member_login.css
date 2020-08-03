@@ -1,5 +1,6 @@
-.lower_header .category .category--drop img {margin-top: -4px;}
-.lower_header.sticky .category .category--drop img {margin-top: -5px;}
+.category--dropdown {
+    margin-top: 0;
+}
 
 .login {
     margin: 160px auto;

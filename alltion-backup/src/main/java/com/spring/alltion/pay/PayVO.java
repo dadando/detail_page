@@ -1,56 +1,65 @@
 package com.spring.alltion.pay;
 
-public class PayVO {
-	String merchant_uid;
-	String name;
-	String amount;
-	String status;
-	String buyer_email;
-	String buyer_name;
-	String buyer_tel;
-	
-	public String getMerchant_uid() {
-		return merchant_uid;
-	}
-	public void setMerchant_uid(String merchant_uid) {
-		this.merchant_uid = merchant_uid;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getAmount() {
-		return amount;
-	}
-	public void setAmount(String amount) {
-		this.amount = amount;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	public String getBuyer_email() {
-		return buyer_email;
-	}
-	public void setBuyer_email(String buyer_email) {
-		this.buyer_email = buyer_email;
-	}
-	public String getBuyer_name() {
-		return buyer_name;
-	}
-	public void setBuyer_name(String buyer_name) {
-		this.buyer_name = buyer_name;
-	}
-	public String getBuyer_tel() {
-		return buyer_tel;
-	}
-	public void setBuyer_tel(String buyer_tel) {
-		this.buyer_tel = buyer_tel;
-	}
+import java.util.Date;
 
+public class PayVO {
+	int rnum;
+	String pay_merchant_uid;
+	String pay_amount;
+	String pay_status;
+	String pay_id;
+	String pay_lastmoney;
+	String pay_nowmoney;
+	Date pay_date;
+	
+	
+	public int getRnum() {
+		return rnum;
+	}
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
+	}
+	public String getPay_merchant_uid() {
+		return pay_merchant_uid;
+	}
+	public void setPay_merchant_uid(String pay_merchant_uid) {
+		this.pay_merchant_uid = pay_merchant_uid;
+	}
+	public String getPay_amount() {
+		return pay_amount;
+	}
+	public void setPay_amount(String pay_amount) {
+		this.pay_amount = pay_amount;
+	}
+	public String getPay_status() {
+		return pay_status;
+	}
+	public void setPay_status(String pay_status) {
+		this.pay_status = pay_status;
+	}
+	public String getPay_id() {
+		return pay_id;
+	}
+	public void setPay_id(String pay_id) {
+		this.pay_id = pay_id;
+	}
+	public String getPay_lastmoney() {
+		return pay_lastmoney;
+	}
+	public void setPay_lastmoney(String pay_lastmoney) {
+		this.pay_lastmoney = pay_lastmoney;
+	}
+	public String getPay_nowmoney() {
+		return pay_nowmoney;
+	}
+	public void setPay_nowmoney(String pay_nowmoney) {
+		this.pay_nowmoney = pay_nowmoney;
+	}
+	public Date getPay_date() {
+		return pay_date;
+	}
+	public void setPay_date(Date pay_date) {
+		this.pay_date = pay_date;
+	}
 	
 }

@@ -25,109 +25,22 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="<c:url value="/resources/css/style.css" />">
+    <link rel="stylesheet" href="<c:url value="/resources/css/main_style.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/css/product_list.css" />">
-    <link href="<c:url value="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"/>" rel="stylesheet">
-    <link href="<c:url value="https://fonts.googleapis.com/icon?family=Material+Icons"/>" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?
+    family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>All-tion</title>
 </head>
 
 <body>
     <!-- 모든 페이지 공통 영역 by 하나  -->
-    <!-- top 키 -->
-    <div id="topKey" class="topKey_btn" >
-        <span class="material-icons">
-            keyboard_arrow_up
-        </span>
-    </div>
-    <!-- 헤더 -->
+    
     <div class="header">
-        <div class="upper_header">
-            <div class="upper_header--nav">
-                <p>
-                    <a href="" id="clock"></a>
-                </p>
-                <ul>
-                    <!-- jstl 바뀐 구문 로그인, 비 로그인 -by계정-->
-                	<c:choose>
-
-					<c:when test="${userId != null}"><!-- 메인페이지 로그인시 -->         
-                    <li>
-                        <a href="./mypage.kj">${userId}</a>
-                    </li>
-                    <li>
-                        <a href="./logout.kj">로그아웃</a>
-                    </li>
-                    </c:when>
-                    <c:otherwise><!-- 로그인 하지 않았을때 메인페이지 -->
-                    <li>
-                        <a href="./loginForm.kj">로그인</a>
-                    </li>
-                    <li>
-                        <a href="./naverjoin.kj">회원 가입</a>
-                    </li>
-                    </c:otherwise>
-                    </c:choose>
-                    <li>
-                    	<a href="./registration.yb">판매하기</a>
-                    </li>
-                    <li>
-                        <a href="#">고객 센터</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="lower_header">
-            <div class="lower_header--nav">
-                <h1 class="logo">
-                    <a href="/alltion/">ALL-TION</a>
-                </h1>
-                <div class="category">
-                    <a class="category--drop">
-                        <img src="./resources/img/header/category_tab.png">
-                    </a>
-                </div>
-                <div class="search">
-                    <select class="search--select">
-                        <option value="">전체</option>
-                        <option value="cate01">패션</option>
-                        <option value="cate02">뷰티</option>
-                        <option value="cate03">출산/유아동</option>
-                        <option value="cate04">전자기기</option>
-                        <option value="cate05">가전제품</option>
-                        <option value="cate06">가구/인테리어</option>
-                        <option value="cate07">반려동물/취미</option>
-                        <option value="cate08">도서/음반/문구</option>
-                        <option value="cate09">티켓/쿠폰</option>
-                        <option value="cate10">스포츠</option>
-                        <option value="cate11">공구/산업용품</option>
-                        <option value="cate12">기타잡화</option>
-                    </select>
-                    <input type="text" placeholder="찾으시는 상품을 입력해 주세요" class="search__input">
-                </div>
-                <ul class="member_info">
-                    <li>
-                        <a href="mypage.kj">
-                            <span class="material-icons">perm_identity</span>
-                            <span>마이 페이지</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="wishList.yb">
-                            <span class="material-icons">turned_in_not</span>
-                            <span>찜 목록</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="material-icons">access_time</span>
-                            <span>참여 경매</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <jsp:include page="../header/main_header.jsp"></jsp:include>
     </div>
+
+    <!-- !! 메인 페이지 내용(지워서 사용함) !! start -->
     <!-- 목록 페이지 -->
     
     <div class="product_list">
@@ -232,7 +145,8 @@
                 <div class="slide1 fade" id="1">
                  <% if(!pricelist.isEmpty()) { %>
                     <ul class="items__list list">
-						<%	for(int i=0; i<3;i++) { 
+						<% for(int i=0; i<3;i++) { 
+							if(i == mainlist.size()) {break;}
 		                    	ProductVO vo = (ProductVO)pricelist.get(i);	%>
                         <li> 
                             <a href="/alltion/boarddetail.hs?product_number=<%=vo.getProduct_number() %>">
@@ -255,8 +169,8 @@
                                 </div>
                             </a>
                         </li>
-                       <% if(i == pricelist.size()) {break;}
-                       } %>
+
+                     <%} %>
                     </ul>
                 <%} %>
                 </div>
@@ -264,6 +178,7 @@
                     <% if(!participantslist.isEmpty()) { %>
                     <ul class="items__list list">
 						<%	for(int i=0; i<3;i++) { 
+							if(i == participantslist.size()) {break;}
 		                    	ProductVO vo = (ProductVO)participantslist.get(i);	%>
                         <li>
                         <a href="/alltion/boarddetail.hs?product_number=<%=vo.getProduct_number() %>">
@@ -286,15 +201,15 @@
                             </div>
                         </a>
                     	</li>
-                        <% if(i == participantslist.size()) {break;}
-                       } %>
+                    	<%} %>
                     </ul>
-                    <%} %>
+                <%} %>  
                 </div>
                 <div class="slide1 fade" id="3">
                     <% if(!viewslist.isEmpty()) { %>
                     <ul class="items__list list">
 						<%	for(int i=0; i<3;i++) { 
+							if(i == viewslist.size()) {break;}
 		                    	ProductVO vo = (ProductVO)viewslist.get(i);	%>
                         <li>
                         <a href="/alltion/boarddetail.hs?product_number=<%=vo.getProduct_number() %>">
@@ -317,15 +232,20 @@
                             </div>
                         </a>
                     	</li>
-                        <% if(i == viewslist.size()) {break;}
-                       } %>
+                      <%} %>
                     </ul>
                     <%} %>
                 </div>
                 <div style="text-align:center">
+                <% if(!pricelist.isEmpty()) { %>
                     <span class="dot"></span>
+                    <%} %>
+                    <% if(!participantslist.isEmpty()) { %>
                     <span class="dot"></span>
+                    <%} %>
+                    <% if(!viewslist.isEmpty()) { %>
                     <span class="dot"></span>
+                    <%} %>
                 </div>
             </div>
             <!-- 경매 목록 -->
@@ -428,7 +348,7 @@
                 </li>
                 <li>
                     <p>올션은 통신판매중개자이며 통신 판매의 당사자가 아닙니다. 따라서 올션은 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.</p> 
-                    <p>Copyright © eBay Korea LLC All rights reserved.</p>
+                    <p>Copyright © Alltion All rights reserved.</p>
                 </li>
             </ul>
         </div>
@@ -436,7 +356,6 @@
 
     <!--  스크립트 영역  -->
     <script src="<c:url value="https://code.jquery.com/jquery-3.5.1.min.js" />"></script>
-    <script src="<c:url value="/resources/js/common.js" />"></script>
     <script src="<c:url value="/resources/js/product_detail.js" />"></script>
 </body>
 </html>

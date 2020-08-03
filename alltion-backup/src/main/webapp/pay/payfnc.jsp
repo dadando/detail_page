@@ -14,32 +14,7 @@
 %>
 
 <!doctype html>
-<!-- 
-create table pay(
-    merchant_uid VARCHAR2(60),
- 	name VARCHAR2(60),
- 	amount VARCHAR2(100),
- 	status VARCHAR2(20),
-    buyer_email VARCHAR2(60),
-    buyer_name VARCHAR2(60),
-    buyer_tel VARCHAR2(60)
-);
-create table paymember(
-    id VARCHAR2(20),
-    pw VARCHAR2(20),
-    email VARCHAR2(20),
-    tel VARCHAR2(20),
-    signdate date,
-    ad number(2)
-);
 
-create table payobject(
-    merchant_uid VARCHAR2(60),
-    selid VARCHAR2(20),
-    objname VARCHAR2(20),
-    aucinsbuymoney number(30) 
-);
- -->
 <html>
 <head>
 <meta charset="utf-8" />
@@ -87,14 +62,11 @@ function makeid() {
                 msg += '결제주문번호는 ' + rsp.merchant_uid +'입니다. 해당 주문번호는 환불요청 시에 필요하니 기억해주시기 바랍니다.';
                 
                 var payVO = { 
-                //dfkek : rsp.imp_uid,
-                merchant_uid : rsp.merchant_uid, //주문번호...상품번호로 대체
+                pay_merchant_uid : rsp.merchant_uid, //주문번호...상품번호로 대체
                 //name : rsp.name,  //결제상품명
-                amount : rsp.paid_amount,   //금액
-                status : rsp.status, // 결제상태
-     	   		//buyer_email : rsp.buyer_email,
-     	  		buyer_name: rsp.buyer_name,   //아이디
-     	 	    //buyer_tel : rsp.buyer_tel
+                pay_amount : rsp.paid_amount,   //금액
+                pay_status : rsp.status, // 결제상태
+     	  		pay_id: rsp.buyer_name,   //아이디
                 }
 
                 //post로 payVO객체의 내용을 전달해야한다............

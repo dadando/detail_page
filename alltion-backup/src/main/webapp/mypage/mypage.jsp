@@ -2,97 +2,27 @@
     pageEncoding="UTF-8"%>
 <%@ page import = "com.spring.alltion.login.MemberVO" %>
 <%
-	String id = (String)session.getAttribute("userId");
-	
+	String id = (String)session.getAttribute("userId");	
 %>
 <!DOCTYPE html>
 <html>
 <head>
  <meta charset="UTF-8">
-    <link rel="stylesheet" href="./resources/css/style.css">
+    <link rel="stylesheet" href="./resources/css/main_style.css?after">
     <link rel="stylesheet" href="./resources/css/mypage.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?
+    family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>All-tion - 마이 페이지</title>
-    <style>
-    </style>
 </head>
 <body>
     <!-- 모든 페이지 공통 영역 by 하나  -->
-   
+    
     <div class="header">
-        <div class="upper_header">
-            <div class="upper_header--nav">
-                <p>
-                    <a href="" id="clock"></a>
-                </p>
-                <ul>
-                    <li>
-                        <a href="./mypage.kj">${userId}</a>
-                    </li>
-                    <li>
-                        <a href="./logout.kj">로그아웃</a>
-                    </li>
-                    <li>
-                    	<a href="./registration.yb">판매하기</a>
-                    </li>
-                    <li>
-                        <a href="#">고객 센터</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="lower_header">
-            <div class="lower_header--nav">
-                <h1 class="logo">
-                    <a href="/alltion/">ALL-TION</a>
-                </h1>
-                <div class="category">
-                    <a class="category--drop">
-                        <img src="./resources/img/header/category_tab.png">
-                    </a>
-                </div>
-                <div class="search">
-                    <select class="search--select">
-                        <option value="">전체</option>
-                        <option value="cate01">패션</option>
-                        <option value="cate02">뷰티</option>
-                        <option value="cate03">출산/유아동</option>
-                        <option value="cate04">전자기기</option>
-                        <option value="cate05">가전제품</option>
-                        <option value="cate06">가구/인테리어</option>
-                        <option value="cate07">반려동물/취미</option>
-                        <option value="cate08">도서/음반/문구</option>
-                        <option value="cate09">티켓/쿠폰</option>
-                        <option value="cate10">스포츠</option>
-                        <option value="cate11">공구/산업용품</option>
-                        <option value="cate12">기타잡화</option>
-                    </select>
-                    <input type="text" placeholder="찾으시는 상품을 입력해 주세요" class="search__input">
-                </div>
-                <ul class="member_info">
-                    <li>
-                        <a href="./mypage.kj">
-                            <span class="material-icons">perm_identity</span>
-                            <span>마이 페이지</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./wishList.yb">
-                            <span class="material-icons">turned_in_not</span>
-                            <span>찜 목록</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="material-icons">access_time</span>
-                            <span>참여 경매</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <jsp:include page="../header/main_header.jsp"></jsp:include>
     </div>
+
+    <!-- !! 메인 페이지 내용(지워서 사용함) !! start -->
     <!--  마이 페이지 선택  -->
     <div class="myPage__main">
         <h3 class="myPage__title">마이 페이지</h3>
@@ -117,9 +47,9 @@
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="./review_view.hs?page=1">
                     <span class="material-icons">forum</span><br>
-                    <span class="myPage__menu">활동 내역</span>
+                    <span class="myPage__menu">리뷰 보기</span>
                 </a>
             </li>
             <li>
@@ -129,19 +59,19 @@
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="./seller.kj">
                     <span class="material-icons">list</span><br>
                     <span class="myPage__menu">판매 내역</span>
                 </a>
             </li>
             <li>
-                <a href="./bidding.hs">
+                <a href="./bidding.hs?page=1">
                     <span class="material-icons">poll</span><br>
                     <span class="myPage__menu">참여 중 경매</span>
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="./selling.hs?page=1">
                     <span class="material-icons">done_all</span><br>
                     <span class="myPage__menu">판매 중 경매</span>
                 </a>
@@ -198,7 +128,7 @@
                 </li>
                 <li>
                     <p>올션은 통신판매중개자이며 통신 판매의 당사자가 아닙니다. 따라서 올션은 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.</p> 
-                    <p>Copyright © eBay Korea LLC All rights reserved.</p>
+                    <p>Copyright © Alltion All rights reserved.</p>
                 </li>
             </ul>
         </div>          
@@ -206,6 +136,5 @@
     
     <!--  스크립트 영역  -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="./resources/js/common.js"></script>
 </body>
 </html>

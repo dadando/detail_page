@@ -6,116 +6,22 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="resources/css/style.css">
+    <link rel="stylesheet" href="./resources/css/main_style.css?after">
     <link rel="stylesheet" href="resources/css/wishList.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?
+    family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>All-tion</title>
 </head>
 
 <body>
     <!-- 모든 페이지 공통 영역 by 하나  -->
-    <!-- top 키 -->
-    <div id="topKey" class="topKey_btn" >
-        <span class="material-icons">
-            keyboard_arrow_up
-        </span>
-    </div>
-    <div class="header">
-        <div class="upper_header">
-            <div class="upper_header--nav">
-                <p>
-                    <a href="" id="clock"></a>
-                </p>
-                <ul>
-                	<!-- jstl 바뀐 구문 로그인, 비 로그인 -by계정-->
-                	<c:choose>
-
-					<c:when test="${userId != null}"><!-- 메인페이지 로그인시 -->         
-                    <li>
-                        <a href="./mypage.kj">${userId}</a>
-                    </li>
-                    <li>
-                        <a href="./logout.kj">로그아웃</a>
-                    </li>
-                    </c:when>
-                    <c:otherwise><!-- 로그인 하지 않았을때 메인페이지 -->
-                    <li>
-                        <a href="./loginForm.kj">로그인</a>
-                    </li>
-                    <li>
-                        <a href="./naverjoin.kj">회원 가입</a>
-                    </li>
-                    </c:otherwise>
-                    </c:choose>
-                    <li>
-                    	<a href="./registration.yb">판매하기</a>
-                    </li>
-                    <li>
-                        <a href="#">고객 센터</a>
-                    </li>
-                    
-                </ul>
-            </div>
-        </div>
-        <div class="lower_header">
-            <div class="lower_header--nav">
-                <h1 class="logo">
-                    <a href="/alltion/">ALL-TION</a>
-                </h1>
-                <div class="category">
-                    <a class="category--drop">
-                        <img src="./resources/img/header/category_tab.png">
-                    </a>
-                </div>
-                <div class="search">
-                    <select class="search--select">
-                        <option value="">전체</option>
-                        <option value="cate01">패션</option>
-                        <option value="cate02">뷰티</option>
-                        <option value="cate03">출산/유아동</option>
-                        <option value="cate04">전자기기</option>
-                        <option value="cate05">가전제품</option>
-                        <option value="cate06">가구/인테리어</option>
-                        <option value="cate07">반려동물/취미</option>
-                        <option value="cate08">도서/음반/문구</option>
-                        <option value="cate09">티켓/쿠폰</option>
-                        <option value="cate10">스포츠</option>
-                        <option value="cate11">공구/산업용품</option>
-                        <option value="cate12">기타잡화</option>
-                    </select>
-                    <input type="text" placeholder="찾으시는 상품을 입력해 주세요" class="search__input">
-                </div>
-                <ul class="member_info">
-                    <li>
-                        <a href="mypage.kj">
-                            <span class="material-icons">perm_identity</span>
-                            <span>마이 페이지</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="wishList.yb">
-                            <span class="material-icons">turned_in_not</span>
-                            <span>찜 목록</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="material-icons">access_time</span>
-                            <span>참여 경매</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- 배너 영역 -->
-    <div class="banner">
-    </div>
     
-    <!-- !! 메인 페이지 내용(지워서 사용함) !! start -->
+    <div class="header">
+        <jsp:include page="../header/main_header.jsp"></jsp:include>
+    </div>
 
+    <!-- !! 메인 페이지 내용(지워서 사용함) !! start -->
     <!-- 찜목록 시작 -->
 
     <section class="wishList">
@@ -140,14 +46,14 @@
             </ul>
 
             <div class="wishList--caption">
-                <p><span class="wishList--conut">찜목록</span>에 대해서 모두 <span class="wishList--conut">2</span>개가 검색되었습니다</p>
-                <button class="wishList--ChangeEndDateFormBtn" type="button">남은시간 표기</button>
+                <p><span class="wishList--conut">찜목록</span>에 대해서 모두 <span class="wishList--conut"></span>개가 검색되었습니다</p>
+                <button class="wishList--changeEndDateFormBtn" type="button">남은시간 표기</button>
             </div>
 
             <div class="wishList--tableWarp">
                 <div class="wishList--columnTitle">
-                    <div class="wishList--deletCheck">
-                        <input type="checkbox">
+                    <div class="wishList--deleteCheck">
+                        <input class="wishList--deleteCheck__allDeleteCheck" type="checkbox" onclick="checkAll()">
                     </div>
                     <div class="wishList--info">
                         <p>상품정보</p>
@@ -163,93 +69,14 @@
                     </div>
                 </div>
     
-                <div class="wishList--contentsWarp">
-                    <div class="wishList--contents">
-                        <div class="wishList--deletCheck">
-                            <input type="checkbox">
-                        </div>
-                        <div class="wishList--info">
-                            <div class="wishList--thumbnail">
-                                <img src="resources/img/product/1.jpg">
-                            </div>
-                            <div class="wishList--description">
-                                <p class="wishList--description__category">출산/유아동 > 유아동의류</p>
-                                <p class="wishList--description__subject"><a>기저귀 100개 저렴하게 판매합니다</a></p>
-                                <p class="wishList--description__seller">ingbeen / 실버(신용도 클릭할때 뜨게할건지 정해야됨)</p>
-                            </div>
-                        </div>
-                        <div class="wishList--currentPrice">
-                            <p class="wishList--currentPrice__currentPrice">45,000</p>
-                            <div class="wishList--purchase_priceWarp">
-                                <p class="wishList--purchase_priceWarp__purchase_price">즉시구매가 : 55,000</p>
-                                <p class="wishList--purchase_priceWarp__bids">입찰 : 13</p>
-                            </div>
-                        </div>
-                        <div class="wishList--delivery">
-                            <p class="wishList--delivery__delivery">착불</p>
-                            <p class="wishList--delivery__transactionArea">직거래가능지역 : 없음</p>
-                        </div>
-                        <div class="wishList--endDate">
-                            <p class="wishList--endDate__endDate" data-endDate="2020-07-15 13:14">2020-07-15 13:14</p>
-                            <button class="wishList--bidBtn" type="button">응찰하기</button>
-                        </div>
-                    </div>
-                    
-                    <div class="wishList--contents">
-                        <div class="wishList--deletCheck">
-                            <input type="checkbox">
-                        </div>
-                        <div class="wishList--info">
-                            <div class="wishList--thumbnail">
-                                <img src="resources/img/product/pier-5086290_1920.jpg">
-                            </div>
-                            <div class="wishList--description">
-                                <p class="wishList--description__category">출산/유아동 > 유아동의류</p>
-                                <p class="wishList--description__subject"><a>기저귀 100개 저렴하게 판매합니다</a></p>
-                                <p class="wishList--description__seller">ingbeen / 실버(신용도 클릭할때 뜨게할건지 정해야됨)</p>
-                            </div>
-                        </div>
-                        <div class="wishList--currentPrice">
-                            <p class="wishList--currentPrice__currentPrice">45,000</p>
-                            <div class="wishList--purchase_priceWarp">
-                                <p class="wishList--purchase_priceWarp__purchase_price">즉시구매가 : 55,000</p>
-                                <p class="wishList--purchase_priceWarp__bids">입찰 : 13</p>
-                            </div>
-                        </div>
-                        <div class="wishList--delivery">
-                            <p class="wishList--delivery__delivery">착불</p>
-                            <p class="wishList--delivery__transactionArea">직거래가능지역 : 없음</p>
-                        </div>
-                        <div class="wishList--endDate">
-                            <p class="wishList--endDate__endDate" data-endDate="2020-07-16 13:14">2020-07-16 13:14</p>
-                            <button class="wishList--bidBtn" type="button">응찰하기</button>
-                        </div>
-                    </div>
-                </div>
-                <button class="wishList--delete" type="button">선택상품 삭제</button>
-                <div class="wishList--pageWarp">
-                    <ul class="wishList--page">
-                        <li>
-                            <a><span class="material-icons">keyboard_arrow_left</span></a>
-                        </li>
-                        <li class="active">
-                            <a><span>1</span></a>
-                        </li>
-                        <li>
-                            <a><span>2</span></a>
-                        </li>
-                        <li>
-                            <a><span>3</span></a>
-                        </li>
-                        <li>
-                            <a><span class="material-icons">keyboard_arrow_right</span></a>
-                        </li>
-                    </ul>
-                </div>
+                <div class="wishList--contentsWarp"></div>
+                
+                <button class="wishList--delete" type="button" onclick="wishListDelete()">선택상품 삭제</button>
+                
+                <div class="wishList--pageWarp"></div>
             </div>
             
         </div>
-            
 
     </section>
 
@@ -306,7 +133,7 @@
                 </li>
                 <li>
                     <p>올션은 통신판매중개자이며 통신 판매의 당사자가 아닙니다. 따라서 올션은 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.</p> 
-                    <p>Copyright © eBay Korea LLC All rights reserved.</p>
+                    <p>Copyright © Alltion All rights reserved.</p>
                 </li>
             </ul>
         </div>    
@@ -314,7 +141,6 @@
 
     <!--  스크립트 영역  -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="resources/js/common.js"></script>
     <script src="resources/js/wishList.js"></script>
 </body>
 

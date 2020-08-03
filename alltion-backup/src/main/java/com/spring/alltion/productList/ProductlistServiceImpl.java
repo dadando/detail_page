@@ -1,7 +1,10 @@
 package com.spring.alltion.productList;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,22 +18,6 @@ public class ProductlistServiceImpl implements ProductlistService {
 
 	@Autowired(required=false)
 	private SqlSession sqlSession;
-
-	/*
-	@Override
-	public List<ProductVO> getproductList(int page, int limit) {
-		// TODO Auto-generated method stub
-		int startrow=(page-1)*5+1; 
-		int endrow=startrow+limit-1; 
-		HashMap<String, Integer> params = new HashMap<String, Integer>();
-		params.put("start", startrow);
-		params.put("end", endrow);
-		
-		List<ProductVO> productlist = sqlSession.selectList("com.spring.mapper.ProductListMapper.getProductList",params);
-		
-		return productlist;
-	}
-*/
 	
 	@Override
 	public int getListCount() {
@@ -39,47 +26,7 @@ public class ProductlistServiceImpl implements ProductlistService {
 		int res = productListMapper.getListCount();
 		return res;
 	}
-/*
-	@Override
-	public List<ProductVO> getproductList(HashMap<String, Integer> hashmap, ProductVO vo) {
-		// TODO Auto-generated method stub
-		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
-		List<ProductVO> productlist = productListMapper.getProductList(hashmap, vo);
-		return productlist;
-	}
-*/
-	@Override
-	public List<ProductVO> getCategorylist(String product_category_2) {
-		// TODO Auto-generated method stub
-		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
-		List<ProductVO> productlist = productListMapper.getCategorylist(product_category_2);
-		
-		return productlist;
-	}
 
-	@Override
-	public List<ProductVO> getproductList(HashMap<String, Integer> hashmap) {
-		// TODO Auto-generated method stub
-		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
-		List<ProductVO> productlist = productListMapper.getProductList(hashmap);
-		return productlist;
-	}
-	@Override
-	public List<ProductVO> getMainlist() {
-		// TODO Auto-generated method stub
-		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
-		List<ProductVO> productlist = productListMapper.getMainlist();
-		System.out.println(productlist.get(0).getProduct_number());
-		return productlist;
-	}
-	
-	@Override
-	public List<ProductVO> getOrderbylist(String product_category_2, String sort_list) {
-		// TODO Auto-generated method stub
-		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
-		List<ProductVO> productlist = productListMapper.getOrderbylist(product_category_2, sort_list);
-		return productlist;
-	}
 	@Override
 	public List<ProductVO> getfamousPricelist(String product_category_2) {
 		// TODO Auto-generated method stub
@@ -122,4 +69,124 @@ public class ProductlistServiceImpl implements ProductlistService {
 		List<ProductVO> productlist = productListMapper.getfamousViewslist2();
 		return productlist;
 	}
+	@Override
+	public List<ProductVO> getMainlist(HashMap<String, String> hashmap) {
+		// TODO Auto-generated method stub
+		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
+		//entrySet을 이용하여 앞서 받아온 key값과 value 값을 둘 다 가져올 예정
+		Set set = hashmap.entrySet();
+        Iterator iterator = set.iterator();
+        List<ProductVO> productlist = null;
+        String key = null;
+        String value = null;
+        // hashmap에 있는 데이터만큼 반복
+        while(iterator.hasNext()){
+            Entry<String,String> entry = (Entry)iterator.next();
+            // 키값 확인
+            key = (String)entry.getKey();
+            // value값 확인
+            value = (String)entry.getValue();
+            //System.out.println("hashMap Key : " + key);
+            //System.out.println("hashMap Value : " + value);
+            // 키가 sort인 value값에 따라 mapping
+            if(key.equals("sort") && value.equals("1")) {
+            	// 최신 순 
+            	productlist = productListMapper.getMainlist1(hashmap);
+            }else if(key.equals("sort") && value.equals("2")) {
+            	// 조회수 높은 순
+            	productlist = productListMapper.getMainlist2(hashmap);
+            }else if(key.equals("sort") && value.equals("3")) {
+            	// 낮은 가격 순
+            	productlist = productListMapper.getMainlist3(hashmap);
+            }else if(key.equals("sort") && value.equals("4")) {
+            	// 높은 가격 순
+            	productlist = productListMapper.getMainlist4(hashmap);
+            }else {
+            	//System.out.println("key값이 sort가 아닌 경우");
+            }
+        }
+		return productlist;
+	}
+	
+	@Override
+	public int getCategorylistCount(String product_category_2) {
+		// TODO Auto-generated method stub
+		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
+		int res = productListMapper.getCategorylistCount(product_category_2);
+		return res;
+	}
+
+	@Override
+	public List<ProductVO> getCategorylist(HashMap<String, String> hashmap) {
+		// TODO Auto-generated method stub
+		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
+		//entrySet을 이용하여 앞서 받아온 hashmap의 key값과 value값을 둘 다 가져올 예정
+		Set set = hashmap.entrySet();
+        Iterator iterator = set.iterator();
+        List<ProductVO> productlist = null;
+        String key = null;
+        String value = null;
+     // hashmap에 있는 데이터만큼 반복
+        while(iterator.hasNext()){
+            Entry<String,String> entry = (Entry)iterator.next();
+            // 키값 확인
+            key = (String)entry.getKey();
+            // value값 확인
+            value = (String)entry.getValue();
+//            System.out.println("hashMap Key : " + key);
+//            System.out.println("hashMap Value : " + value);
+         // 키가 sort인 value값에 따라 mapping
+            if(key.equals("sort") && value.equals("1")) {
+            	// 최신 순
+            	productlist = productListMapper.getCategorylist1(hashmap);
+            }else if(key.equals("sort") && value.equals("2")) {
+            	// 조회수 높은 순
+            	productlist = productListMapper.getCategorylist2(hashmap);
+            }else if(key.equals("sort") && value.equals("3")) {
+            	// 낮은 가격 순
+            	productlist = productListMapper.getCategorylist3(hashmap);
+            }else if(key.equals("sort") && value.equals("4")) {
+            	// 높은 가격 순
+            	productlist = productListMapper.getCategorylist4(hashmap);
+            }else {
+            	//System.out.println("key값이 sort가 아닌 경우");
+            }
+        }
+		return productlist;
+	}
+
+	
+	// MainController
+	@Override
+	public List<ProductVO> getMain(HashMap<String, String> hashmap) {
+		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
+		List<ProductVO> productlist = productListMapper.getMainlist2(hashmap);
+
+		return productlist;
+	}
+	
+	@Override
+	public List<ProductVO> getParticipantsForMain(HashMap<String, String> hashmap) {
+		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
+		List<ProductVO> productlist = productListMapper.getParticipantsForMain(hashmap);
+		
+		return productlist;
+	}
+	
+	@Override
+	public int getCate01ListCount(String product_category_1) {
+		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
+		int result = productListMapper.getCate01ListCount(product_category_1);
+		
+		return result;
+	}
+	
+	@Override
+	public List<ProductVO> getCate01List(HashMap<String, String> hashmap) {
+		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
+		List<ProductVO> productlist = productListMapper.getCate01List(hashmap);
+		
+		return productlist;
+	}
+	
 }

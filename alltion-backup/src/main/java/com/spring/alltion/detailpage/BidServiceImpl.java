@@ -145,7 +145,7 @@ public class BidServiceImpl {
 		if(top_bidder_id==null) {
 			top_bidder_id = "";
 		}else {
-			top_bidder_id = top_bidder_id.substring(0,3) + "****";
+			top_bidder_id = top_bidder_id.substring(0,3) + "***";
 		}
 		
 		return top_bidder_id;

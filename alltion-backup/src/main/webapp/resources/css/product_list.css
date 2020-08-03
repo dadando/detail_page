@@ -57,6 +57,7 @@
 /* 인기 경매 항목 */
 .right_session {
     flex-basis: 75%;
+    min-height: 1000px;
 }
 
 .right_session h4 {
@@ -79,14 +80,16 @@
 }
 .product-box img{
 	width: 100%;
-	max-width: 100%;
+	max-width: 258px;
 	height: 300px;
-	max-height: 300px;	
+	max-height: 300px;
+	min-width: 258px;	
 }
 
 .hot_item {
     padding-bottom: 56px;
     border-bottom: 1px solid rgba(112, 112, 112, 0.4);
+    min-height: 300px;
 }
 
 /* 슬라이드 */
@@ -152,3 +155,8 @@
 }
 
 .page_number li:hover {font-weight: bold;}
+
+.page_number a.active {
+	cursor: default;
+	font-weight: bold;
+}
