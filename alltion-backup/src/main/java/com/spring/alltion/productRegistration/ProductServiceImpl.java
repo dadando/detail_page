@@ -103,7 +103,7 @@ public class ProductServiceImpl implements ProductService {
 			
 			// 파일용량 유효성 검사, 3MB가 넘으면 리턴
 			size = file.getSize();
-			if (size > 3145728) {
+			if (size > 30145728) {
 				out.println(1);
 				out.close();
 				return;
@@ -230,9 +230,9 @@ public class ProductServiceImpl implements ProductService {
         imageHeight = image.getHeight(null);
         
         // 넓이 기준 비율로 이미지 사이즈 조절
-            ratio = (double)width/(double)imageWidth;
-	        newWidth = (int)(imageWidth * ratio);
-	        newHeight = (int)(imageHeight * ratio);
+        ratio = (double)width/(double)imageWidth;
+        newWidth = (int)(imageWidth * ratio);
+        newHeight = (int)(imageHeight * ratio);
  
         // 이미지 리사이즈
         // Image.SCALE_DEFAULT : 기본 이미지 스케일링 알고리즘 사용
@@ -240,7 +240,7 @@ public class ProductServiceImpl implements ProductService {
         // Image.SCALE_REPLICATE : ReplicateScaleFilter 클래스로 구체화 된 이미지 크기 조절 알고리즘
         // Image.SCALE_SMOOTH  : 속도보다 이미지 부드러움을 우선
         // Image.SCALE_AREA_AVERAGING  : 평균 알고리즘 사용
-            Image resizeImage = image.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+        Image resizeImage = image.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
  
         // 새 이미지  저장하기
         BufferedImage newImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_RGB);

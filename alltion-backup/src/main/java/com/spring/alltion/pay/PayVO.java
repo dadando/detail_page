@@ -12,7 +12,6 @@ public class PayVO {
 	String pay_nowmoney;
 	Date pay_date;
 	
-	
 	public int getRnum() {
 		return rnum;
 	}
@@ -61,5 +60,4 @@ public class PayVO {
 	public void setPay_date(Date pay_date) {
 		this.pay_date = pay_date;
 	}
-	
 }

@@ -12,7 +12,7 @@ import com.spring.alltion.detailpage.ReviewVO;
 public interface TestMapper {
 	public List<Product_kjVO> getProductlist(@Param(value="userId")String userId);
 	public List<Product_kjVO> getdelivery_before(@Param(value="userId")String userId);
-	public int after_deposit(Product_kjVO Product_kjvo, @Param(value="trading_product_number")int trading_product_number, @Param(value="trading_id") String trading_id);	
+	public int after_deposit(Product_kjVO Product_kjvo, @Param(value="trading_product_number")int trading_product_number, @Param(value="trading_buyer_id") String trading_buyer_id);	
 	public List<Product_kjVO> getdeposit_before(@Param(value="userId")String userId);
 	public List<Product_kjVO> getSalelist(@Param(value="userId")String userId);
 	public List<Product_kjVO> getdealcomplete_seller(@Param(value="userId")String userId);
@@ -31,7 +31,12 @@ public interface TestMapper {
 	
 	public int insertReview(ReviewVO Reviewvo);
 	
+	public String findSubjectFromNum(@Param(value="product_number")int product_number);
+	public int updatetrading_transaction_method(Product_kjVO Product_kjvo, @Param(value="trading_transaction_method") String trading_transaction_method, @Param(value="product_number")int product_number);
+	public void update_trading_progress(int trading_product_number);
+	
+	public int update_trading_address(Product_kjVO Product_kjvo);
 	
 	
-	
+
 }

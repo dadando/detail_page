@@ -86,8 +86,6 @@ public class ProductlistServiceImpl implements ProductlistService {
             key = (String)entry.getKey();
             // value값 확인
             value = (String)entry.getValue();
-            //System.out.println("hashMap Key : " + key);
-            //System.out.println("hashMap Value : " + value);
             // 키가 sort인 value값에 따라 mapping
             if(key.equals("sort") && value.equals("1")) {
             	// 최신 순 
@@ -133,9 +131,7 @@ public class ProductlistServiceImpl implements ProductlistService {
             key = (String)entry.getKey();
             // value값 확인
             value = (String)entry.getValue();
-//            System.out.println("hashMap Key : " + key);
-//            System.out.println("hashMap Value : " + value);
-         // 키가 sort인 value값에 따라 mapping
+            // 키가 sort인 value값에 따라 mapping
             if(key.equals("sort") && value.equals("1")) {
             	// 최신 순
             	productlist = productListMapper.getCategorylist1(hashmap);
@@ -154,39 +150,4 @@ public class ProductlistServiceImpl implements ProductlistService {
         }
 		return productlist;
 	}
-
-	
-	// MainController
-	@Override
-	public List<ProductVO> getMain(HashMap<String, String> hashmap) {
-		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
-		List<ProductVO> productlist = productListMapper.getMainlist2(hashmap);
-
-		return productlist;
-	}
-	
-	@Override
-	public List<ProductVO> getParticipantsForMain(HashMap<String, String> hashmap) {
-		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
-		List<ProductVO> productlist = productListMapper.getParticipantsForMain(hashmap);
-		
-		return productlist;
-	}
-	
-	@Override
-	public int getCate01ListCount(String product_category_1) {
-		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
-		int result = productListMapper.getCate01ListCount(product_category_1);
-		
-		return result;
-	}
-	
-	@Override
-	public List<ProductVO> getCate01List(HashMap<String, String> hashmap) {
-		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
-		List<ProductVO> productlist = productListMapper.getCate01List(hashmap);
-		
-		return productlist;
-	}
-	
 }

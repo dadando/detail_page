@@ -150,9 +150,9 @@ input[id="popular-items"] + label {
 } /* 모든 메뉴에 해당 */
 
 input[id="popular-items"]:checked ~ .content1 {display: block;}
-input[id="deadline-items"]:checked ~ .content2 {display: block;}
-input[id="resell-items"]:checked ~ .content3 {display: block;}
-input[id="premium-items"]:checked ~ .content4 {display: block;}
+input[id="recent-items"]:checked ~ .content2 {display: block;}
+input[id="deadline-items"]:checked ~ .content3 {display: block;}
+/*nput[id="premium-items"]:checked ~ .content4 {display: block;} */
 
 /* desktop-size(min:1280) */
 /* -- 인기 경매 */
@@ -176,6 +176,9 @@ input[id="premium-items"]:checked ~ .content4 {display: block;}
     flex-basis: 25%;
     margin-bottom: 64px;
     padding: 0 10px;
+   	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .product-box {
@@ -190,13 +193,18 @@ input[id="premium-items"]:checked ~ .content4 {display: block;}
     height: 100%;
 }
 
-.items__product--info {position: relative;}
+.items__product--info {
+	position: relative;
+}
 
 .product_name {
     font-size: 20px;
     font-weight: 800;
     margin-top: 18px;
     margin-bottom: 2px;
+    white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .material-icons.timer {
@@ -205,6 +213,7 @@ input[id="premium-items"]:checked ~ .content4 {display: block;}
     vertical-align: middle;
 }
 
+/*
 .bookmark {
     position: absolute;
     top: 0;
@@ -220,10 +229,16 @@ input[id="premium-items"]:checked ~ .content4 {display: block;}
     font-size: 12px;
     margin-top: -8px;
 }
+*/
 
 .countdown {
     font-size: 14px;
     color: #6C6C6C;
+}
+
+.view_count_text, .view_count {
+	font-size: 12px;
+	color: #6C6C6C;
 }
 
 .price-txt {
@@ -248,6 +263,7 @@ input[id="premium-items"]:checked ~ .content4 {display: block;}
 
 /* desktop-size(min:1280) */
 /* -- 마감 임박 */
+/*
 .deadline-items--product {display: none;}
 
 .deadline-items--product.active {display: block;}
@@ -289,7 +305,6 @@ input[id="premium-items"]:checked ~ .content4 {display: block;}
 .deadline-items__detail {
     font-size: 24px;
     font-weight: 600;
-/*    margin-left: 14px;*/
 }
 
 .deadline-items__detail_menu ul {
@@ -306,6 +321,7 @@ input[id="premium-items"]:checked ~ .content4 {display: block;}
 .deadline-items__detail_menu ul li a:hover {
     text-decoration: underline;
 }
+*/
 
 /* desktop-size(min:1280) */
 /* -- 프리미엄관 */

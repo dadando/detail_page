@@ -30,6 +30,7 @@ public class MemberVO {
 	int member_delete;
 	int member_manager;
 	String member_date;
+	
 	public String getMember_name() {
 		return member_name;
 	}

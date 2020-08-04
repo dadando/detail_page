@@ -31,7 +31,7 @@ pageEncoding="UTF-8"%>
                     <a href="./mypage.kj">${userId}</a>
                 </li>
                 <li>
-                	<a href="./pay.ms">￦${currentMoney }</a>
+                	<a href="./pay.ms">￦ &nbsp;${currentMoney }</a>
                 </li>
                 <li>
                     <a href="./logout.kj">로그아웃</a>

@@ -7,7 +7,7 @@
 	List<Product_kjVO> getSale_list = (List<Product_kjVO>)request.getAttribute("getSale_list");
 %>
 <%
-	List<Product_kjVO> sale_complete_list = (List<Product_kjVO>)request.getAttribute("sale_complete_list");
+	List<Product_kjVO> dealcompleteseller_list = (List<Product_kjVO>)request.getAttribute("dealcompleteseller_list");
 %>
 <%
 	List<Product_kjVO> getdeposit_before_list = (List<Product_kjVO>)request.getAttribute("getdeposit_before_list");
@@ -73,11 +73,17 @@
         <div class="page_btns" id ="sell_list_page" align = "center"></div>
     	<%} %>
     <!-- 판매완료 -->
-    	
+
+    	<%if(dealcompleteseller_list.size()==0) {%>
+    		<div class="seller--form">
+    		<h3>판매 완료된 경매가 없습니다</h3>
+    		</div>
+    	<%}else{ %>
+
         <div class="seller--form" id ="sale_list"></div>
     	
         <div class="page_btns" id ="sale_list_page" align = "center"></div>
-
+		<%} %>
     <!-- 푸터 영역 -->
     <div class="footer">
         <div class="upper_footer">
@@ -337,7 +343,7 @@
         						output += '<span>구매자 아이디</span>';
         						output += '</div>';
         						output += '<div class="seller_form__list content">';
-        						output += '<span>' + item.trading_id + '</span>';
+        						output += '<span>' + item.trading_buyer_id + '</span>';
         						output += '</div>';
         						output += '</li>';
         						output += '</ul>';
@@ -361,7 +367,7 @@
         						output += '<span>구매자 번호</span>';
         						output += '</div>';
         						output += '<div class="seller_form__list content">';
-        						output += '<span>' + item.member_phone + '</span>';
+        						output += '<span>' + item.trading_phone + '</span>';
         						output += '</div>';
         						output += '</li>';
         						output += '</ul>';
@@ -489,7 +495,7 @@
     						output += '<span>구매자</span>';
     						output += '</div>';
     						output += '<div class="seller_form__list content">';
-    						output += '<span>' + item.trading_id + '</span>';
+    						output += '<span>' + item.trading_buyer_id + '</span>';
     						output += '</div>';
     						output += '</li>';
     						output += '</ul>';

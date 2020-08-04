@@ -56,7 +56,7 @@ function changeCategory(item) {
         } else if (value == 'cate09') { // 티켓/쿠폰
             changeCategory_2(value, "티켓", "상품권/쿠폰", "여행숙박/이용권", "기타 티켓/쿠폰/이용권");
 
-        } else if (value == 'cate10') { //스포츠
+        } else if (value == 'cate10') { // 스포츠
             changeCategory_2(value, "골프", "자전거", "인라인/스케이트/전동", "축구", "야구", "농구", 
                 "라켓스포츠", "헬스/요가", "수상스포츠", "검도/격투/권투", "기타 스포츠", "레저/여행");
 
@@ -343,7 +343,7 @@ function fileValidation(file) {
     if (thumbnailCount > 4) { // 이미지는 최대 5장까지만
         alert("이미지는 최대 5장까지 가능합니다");
         return true;
-    } else if (file.size > 3145728) { // 용량 3MB 유효성 검사
+    } else if (file.size > 30145728) { // 용량 3MB 유효성 검사
         alert("업로드 가능한 이미지의 최대용량은 3MB입니다");
         return true;
     } else if (file.type != "image/jpeg") { // 확장자 유효성 검사
@@ -520,7 +520,7 @@ function productInsert(imgSrcList) {
         type: 'post',
         data: formData,
         success: () => {
-        	alert("성공(alert창 삭제예정 : 마이페이지 - 판매관리로 이동)");
+        	window.location.href = "selling.hs?page=1";
         	clickCheck = false; // 중복클릭 방지해제
         },
         error: () => clickCheck = false // 중복클릭 방지해제

@@ -19,10 +19,4 @@ public interface ProductlistService {
 	public List<ProductVO> getMainlist(HashMap<String, String> hashmap);
 	public int getCategorylistCount(String product_category_2);
 	public List<ProductVO> getCategorylist(HashMap<String, String> hashmap);
-	
-	// MainController
-	public List<ProductVO> getMain(HashMap<String, String> hashmap);
-	public List<ProductVO> getParticipantsForMain(HashMap<String, String> hashmap);
-	public int getCate01ListCount(String product_category_1);
-	public List<ProductVO> getCate01List(HashMap<String, String> hashmap);
 }	

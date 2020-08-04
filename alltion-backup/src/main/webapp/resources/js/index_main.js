@@ -6,6 +6,7 @@ $(function() {
     });
     
     // 인기 경매 - 카테고리 누를 때마다 이동
+    /*
     $("ul.deadline-items__category > li").click(function() {
         let activeTab = $(this).attr('id');
         
@@ -14,4 +15,5 @@ $(function() {
         $(this).addClass('active');
         $('div.deadline-items--product.' + activeTab).addClass('active');
     })
+    */
 });

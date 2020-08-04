@@ -22,17 +22,18 @@ ADD CONSTRAINT PK_purchase_id PRIMARY KEY (purchase_id); -- 기본키 부여
 
 -- 2. 회원 테이블
 create table member(
-    member_name varchar2(10),
-    member_id varchar2(20) primary key,
-    member_password varchar2(20) not null,
-    email varchar2(50) not null,
-    member_phone varchar2(11) not null,
-    sample4_postcode varchar2(30),
-    sample4_roadAddress varchar2(50),
-    sample4_jibunAddress varchar2(50),
-    sample4_detailAddress varchar2(50),
-    member_delete varchar2(2) default '0'   -- 회원탈퇴시 값이 1으로 바뀌면서 로그인 불가
-);
+member_name varchar2(15),
+member_id varchar2(20) primary key,
+member_password varchar2(20) not null,
+email varchar2(50) not null,
+member_phone varchar2(11) not null,
+sample4_postcode varchar2(30),
+sample4_roadAddress varchar2(50),
+sample4_jibunAddress varchar2(50),
+sample4_detailAddress varchar2(50),
+member_delete number default 0,   -- 회원탈퇴시 값이 1으로 바뀌면서 로그인 불가
+member_manager number default 0,  --0은 일반회원 1은 관리자
+member_date date not null
 
 -- 3. 판매 등급 테이블
 CREATE TABLE sale_credit_score_list (
@@ -197,5 +198,29 @@ create table wish_list (
     wish_product_number number, -- 상품번호
     wish_id varchar2(1000), -- 아이디
     wish_date Date -- 등록일
+);
+
+-- e머니 충전/결제/리스트
+create table paylist(
+    pay_id VARCHAR(60) primary key, --구매자 id
+    pay_current_money varchar2(1000) -- 구매자가 보유한 사이버머니
+);
+create table pay(
+	pay_merchant_uid VARCHAR2(60),  --결제주문번호
+ 	pay_amount VARCHAR2(100),  --결제금액
+ 	pay_status VARCHAR2(20),  --결제상태(paid:결제, 결제취소 : 결제취소)
+    pay_id VARCHAR2(20),  --구매자 id -> member_id 외래키 추가
+    pay_lastmoney VARCHAR2(100), -- 이전 금액
+    pay_nowmoney VARCHAR2(100), -- 변동 후 금액
+    pay_date date -- 구매 날짜
+);
+create table payment(
+    payment_userId VARCHAR2(60), --결제주문번호
+	payment_product_subject VARCHAR2(60), --결제한 상품제목
+	payment_amount VARCHAR2(100), -- 거래 금액
+	payment_lastmoney VARCHAR2(100),  --결제 이전 금액(변동 전)
+	payment_nowmoney VARCHAR2(100), --결제 후 금액(변동 후)
+    payment_status VARCHAR2(20),  --(판매 시)판매입금, (구매 시)상품결제
+	payment_date date  --거래 날짜(order by용도)
 );
 */

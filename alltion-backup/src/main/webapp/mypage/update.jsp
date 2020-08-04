@@ -57,11 +57,11 @@
                             <span>비밀번호 변경</span>
                         </div>
                         <div class="update_form__list content">
-                            <input type="password" id="member_password" name = "member_password" class= "int"><br>
-                            <input type="password" id="member_password2"  name = "member_password2" class = "int" onchange="checkpassword()">
+                            <input type="password" id="member_password" name = "member_password" class= "int" placeholder="변경할 비밀번호를 입력해주세요"><br>
+                            <input type="password" id="member_password2"  name = "member_password2" class = "int" onchange="checkpassword()" placeholder="변경된 비밀번호를 재입력해주세요">
                             <span id="alert-success1" style="display: none; color: #1ec700;">비밀번호가 일치합니다.</span>
     						<span id="alert-danger1" style="display: none; color: #d92742; font-weight: bold; ">비밀번호가 일치하지 않습니다.</span>
-                            <a href = "javascript:updatePassword.submit()" class="update_btn__submit">비밀번호 변경</a>
+                            <a href = "javascript:updatePassword.submit()" class="update_btn__submit" style="font-size:12px;background-color:#EFEFEF;margin-left:8px;">비밀번호 변경</a>
                         </div>
                     </li>  
                     </ul>
@@ -75,7 +75,7 @@
                         </div>
                         <div class="update_form__list content">
                             <span><%=membervo.getEmail() %></span>&nbsp;&nbsp;&nbsp;
-                            	<input type ="button" onclick = "modal_display_email()"  value = "이메일 변경">                         
+                            	<input type ="button" onclick = "modal_display_email()"  value = "이메일 변경" style="font-size:12px;cursor:pointer;">                         
                             		<div id="member_update_modal_email" class="modal">
                                		 <div class="modal-content">
                                    		 <span class="close">&times;</span>
@@ -104,8 +104,8 @@
                         </div>
                         <div class="update_form__list content">
                            <span><%=membervo.getMember_phone().substring(0,3) %>-<%=membervo.getMember_phone().substring(3,7) %>-<%=membervo.getMember_phone().substring(7) %></span>&nbsp;&nbsp;&nbsp;                
-                           <span>'-' 없이 입력해 주세요"</span>&nbsp;&nbsp;&nbsp;
-                           <input type ="button" onclick = "modal_display_phone()" value = "휴대전화 변경"> 
+                           <input type ="button" onclick = "modal_display_phone()" value = "휴대전화 변경" style="font-size:12px;cursor:pointer;">
+                           <span style="font-size:12px;">&nbsp;&nbsp;'-' 없이 입력해 주세요</span>
                            <div id="member_update_modal_phone" class="modal">
                            	<div class="modal-content">
                                    		 <span class="close">&times;</span>
@@ -151,7 +151,7 @@
                             </c:otherwise>
                             </c:choose>
                             
-                            <input type ="button" onclick = "modal_display_address()" value = "주소 변경"> 
+                            <input type ="button" onclick = "modal_display_address()" value = "주소 변경" style="font-size:12px;cursor:pointer;" > 
                             <div id="member_update_modal_address" class="modal">
                             	<div class="modal-content">
                                 <span class="close">&times;</span>
@@ -193,7 +193,7 @@
                         </div>
                         <div class="update_form__list content">
                         <h4>회원 정보 삭제시 다시는 회원정보를 불러올수 없습니다</h4>
-                            <span><input type ="button" onclick = "modal_display_delete_member()" value = "회원정보 삭제">
+                            <span><input type ="button" onclick = "modal_display_delete_member()" value = "회원정보 삭제" style="font-size:12px;cursor:pointer;">
                             <div id="member_update_modal_delete_member" class="modal">
                             	<div class="modal-content">
                                 <span class="close">&times;</span>

@@ -44,7 +44,15 @@
 
 .update_form__list.content input {
     display: inline-block;
-    border: 1px border;
+}
+
+#member_password, #member_password2 {
+	border-bottom: 1px solid rgba(112, 112, 112, 0.7);
+	width: 194px;
+}
+
+#member_password2 {
+	margin-top: 8px;
 }
 
 /* 버튼 */
